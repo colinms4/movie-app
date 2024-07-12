@@ -9,5 +9,90 @@
     <p>
     Building an app that allows users to search for a movie within the database
     </p>
+
+    <table>
+        <tr>
+          <th>Logic</th>
+          <th>URL</th>
+          <th>HTTP Method</th>
+          <th>Request Body</th>
+          <th>Response Body</th>
+        </tr>
+        <tr>
+          <td>get a list of all movies</td>
+          <td>/movies</td>
+          <td>GET</td>
+          <td>None</td>
+          <td>JSON object with a list of all movies</td>
+        </tr>
+        <tr>
+          <td>get data on a single title</td>
+          <td>/movies/:Title</td>
+          <td>GET</td>
+          <td>None</td>
+          <td>JSON object with data on a single title</td>
+        </tr>
+        <tr>
+            <td>adds data for a new movie to the list of movies</td>
+            <td>/movies</td>
+            <td>POST</td>
+            <td>JSON object</td>
+            <td>JSON object</td>
+        </tr>
+        <tr>
+            <td>get a genre by title</td>
+            <td>/movies/genre/:genreName</td>
+            <td>GET</td>
+            <td>None</td>
+            <td>JSON object with a list of genres</td>
+        </tr>
+        <tr>
+            <td>get director data by name</td>
+            <td>/movies/directors/:directorName</td>
+            <td>GET</td>
+            <td>None</td>
+            <td>JSON object with data on a director </td>
+        </tr>
+        <tr>
+            <td>registers a new user</td>
+            <td>/users</td>
+            <td>POST</td>
+            <td>JSON object with data on the user</td>
+            <td>Text indicated the user was sucessfully added</td>
+        </tr>
+        <tr>
+            <td>updates a user's info</td>
+            <td>/users/:id</td>
+            <td>PUT</td>
+            <td>JSON object with the updated information</td>
+            <td>JSON object with the updated infromation correctly displayed</td>
+        </tr>
+        <tr>
+            <td>add a movie a user's favorites</td>
+            <td>/users/:id/:movieTitle</td>
+            <td>POST</td>
+            <td>movie added to the end of the URL</td>
+            <td>text indicating that the movie was successfully added to the user's favorites</td>
+        </tr>
+        <tr>
+            <td>delete a movie from user's favorites</td>
+            <td>/users/:id/:movieTitle</td>
+            <td>DELETE</td>
+            <td>none</td>
+            <td>text that the users movie was sucessfully removed</td>
+        </tr>
+        <tr>
+            <td>deregister a user</td>
+            <td>/users/:id</td>
+            <td>DELETE</td>
+            <td>none</td>
+            <td>text that the users has sucessfully been deleted</td>
+        </tr>
+    
+    
+    
+    
+    
+    </table>
 </body>
 </html>
