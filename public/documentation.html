@@ -62,31 +62,45 @@
         </tr>
         <tr>
             <td>updates a user's info</td>
-            <td>/users/:id</td>
+            <td>/users/:Username</td>
             <td>PUT</td>
             <td>JSON object with the updated information</td>
             <td>JSON object with the updated infromation correctly displayed</td>
         </tr>
         <tr>
             <td>add a movie a user's favorites</td>
-            <td>/users/:id/:movieTitle</td>
+            <td>/users/:Username/movies/:movieID</td>
             <td>POST</td>
             <td>movie added to the end of the URL</td>
             <td>text indicating that the movie was successfully added to the user's favorites</td>
         </tr>
         <tr>
             <td>delete a movie from user's favorites</td>
-            <td>/users/:id/:movieTitle</td>
+            <td>/users/:Username/movies/:movieID</td>
             <td>DELETE</td>
             <td>none</td>
             <td>text that the users movie was sucessfully removed</td>
         </tr>
         <tr>
             <td>deregister a user</td>
-            <td>/users/:id</td>
+            <td>/users/:Username</td>
             <td>DELETE</td>
             <td>none</td>
             <td>text that the users has sucessfully been deleted</td>
+        </tr>
+        <tr>
+            <td>get a list of all users</td>
+            <td>/users</td>
+            <td>GET</td>
+            <td>NONE</td>
+            <td>JSON Object with a data on the Users</td>
+        </tr>
+        <tr>
+            <td>get a user by username</td>
+            <td>/users/:Username</td>
+            <td>GET</td>
+            <td>Username of user</td>
+            <td>JSON Object with user's data</td>
         </tr>
     
     
