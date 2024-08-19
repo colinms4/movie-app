@@ -11,7 +11,13 @@ const express = require('express'),
     uuid = require('uuid');
 const app = express();
 
+const { check, validationResult } = require('express-validator');
+ 
 app.use(bodyParser.json());
+
+const cors = require('cors');
+app.use(cors());
+
 let auth = require('./auths')(app);
 
 const passport = require('passport');
@@ -128,7 +134,20 @@ app.get('/movies/directors/:directorName', passport.authenticate('jwt', { sessio
 
 
 // registers a new user
-app.post('/users', async (req, res) => {
+app.post('/users', [
+    check('Username', 'Username is required').isLength({min: 5}),
+    check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+    check('Password', 'Password is required').not().isEmpty(),
+    check('Email', 'Email does not appear to be valid').isEmail()
+  ], async (req, res) => {
+
+  // check the validation object for errors
+    let errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+    let hashPassword = Users.hashPassword(req.body.Password);
     await Users.findOne({ Username: req.body.Username})
     .then((user) => {
         if (user) {
@@ -137,7 +156,7 @@ app.post('/users', async (req, res) => {
             Users
               .create ({
                 Username: req.body.Username,
-                Password: req.body.Password,
+                Password: hashPassword,
                 Email: req.body.Email,
                 Birthday: req.body.Birthday
               })
@@ -238,9 +257,10 @@ app.get('/',(req,res)=> {
     res.send('Welcome to my Top Movies!');
 });
 
-app.listen(8080, () => {
-    console.log('Your app is listening on port 8080.');
-  });
+const port = process.env.PORT || 8080;
+app.listen(port, '0.0.0.0',() => {
+ console.log('Listening on Port ' + port);
+});
 
 app.use(express.static('public'));
 
